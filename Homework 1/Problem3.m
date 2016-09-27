@@ -3,7 +3,7 @@ load workspace
 close all
 
 N = 1000;
-x0 = ((floor(4*rand(1,N))-1.5)/1.5)+j*((floor(4*rand(1,N))-1.5)/1.5);
+x0 = ((floor(2*rand(1,N))-0.5)/0.5)+j*((floor(2*rand(1,N))-0.5)/0.5);
 x1 = zeros(1, 8*N);
 x1(1:8:8*N) = x0;
 x1 = filter(h1,1,x1);
