@@ -10,45 +10,37 @@ h2 = rcosine(1, 8, 'sqrt', 0.4, 10);
 h2 = h2/max(h2);
 
 subplot(2,2,1);
-plot(-10:1/8:10, h1);
+plot(0:length(h1)-1, h1, 'k');
 hold on
-plot(-10:1:10, h1(1:8:length(h1)), 'ro')
+plot(0:8:length(h1)-1, h1(1:8:length(h1)), 'ro')
 title('Impulse Response when alpha = 0.2')
 grid on
 
 subplot(2, 2, 2)
-plot(-10:1/8:10, h2)
+plot(0:length(h2)-1, h2, 'k')
 hold on
+plot(0:8:length(h2)-1, h2(1:8:length(h2)), 'ro')
 title('Impulse Response when alpha = 0.4')
-plot(-10:1:10, h2(1:8:length(h2)), 'ro')
+
 grid on
 
-[H1, F1] = freqz(h1, 1, -pi:pi/100000:pi);
 subplot(2,2,3)
-H1mag = mag2db(abs(H1));
-plot(F1/pi, H1mag)
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h1/sum(h1),1024)))), 'k')
 grid on
 title('Frequency Response when alpha = 0.2')
 axes('Position',[.35 .35 .1 .1])
-plot(F1/pi, H1mag)
-ylim([17.585 17.615])
-xlim([-0.11 0.11])
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h1/sum(h1),1024)))),'k')
+ylim([-0.025 0.025])
+xlim([-0.5 0.5])
 box on
 
-[H2, F2] = freqz(h2, 1, -pi:pi/100000:pi);
 subplot(2,2,4)
-H2mag = mag2db(abs(H2));
-plot(F2/pi, H2mag)
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))),'k')
 grid on
 title('Frequency Response when alpha = 0.4')
 axes('Position',[.79 .35 .1 .1])
-plot(F2/pi, H2mag)
-ylim([17.158 17.163])
-xlim([-0.11 0.11])
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))),'k')
+ylim([-0.025 0.025])
+xlim([-0.5 0.5])
 box on
 save('workspace.mat')
-
-
-
-
-
