@@ -17,7 +17,7 @@ title('Impulse Response when alpha = 0.2')
 grid on
 
 subplot(2, 2, 2)
-plot(0:length(h2)-1, h2)
+plot(0:length(h2)-1, h2, 'k')
 hold on
 plot(0:8:length(h2)-1, h2(1:8:length(h2)), 'ro')
 title('Impulse Response when alpha = 0.4')
@@ -25,28 +25,22 @@ title('Impulse Response when alpha = 0.4')
 grid on
 
 subplot(2,2,3)
-plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h1/sum(h1),1024)))))
-
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h1/sum(h1),1024)))), 'k')
 grid on
 title('Frequency Response when alpha = 0.2')
 axes('Position',[.35 .35 .1 .1])
-plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h1/sum(h1),1024)))))
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h1/sum(h1),1024)))),'k')
 ylim([-0.025 0.025])
 xlim([-0.5 0.5])
 box on
 
 subplot(2,2,4)
-plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))))
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))),'k')
 grid on
 title('Frequency Response when alpha = 0.4')
 axes('Position',[.79 .35 .1 .1])
-plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))))
+plot((-0.5:1/1024:0.5-1/1024)*8,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))),'k')
 ylim([-0.025 0.025])
 xlim([-0.5 0.5])
 box on
 save('workspace.mat')
-
-
-
-
-
