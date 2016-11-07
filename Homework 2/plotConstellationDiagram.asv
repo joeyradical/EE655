@@ -1,0 +1,12 @@
+function [null] = plotConstellationDiagram( )
+% Plots the constellation diagram of a modulated signal
+%   Detailed explanation goes here
+plot(x1, 'k')
+grid on
+axis('square')
+hold on
+plot(x1(1:4:4*N),'r.')
+title('Constellation Diagram of modulated signal')
+
+end
+
