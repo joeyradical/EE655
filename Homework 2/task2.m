@@ -4,7 +4,7 @@ close all
 N = 1000
 sigma = 0.02
 fs = 4
-h = rcosine(1, fs, 'sqrt', 0.5, 10);
+h = rcosine(1, fs, 'sqrt', 0.5, 6);
 h = h/max(h);
 x0 = ((floor(2*rand(1,N))-0.5)/0.5)+j*((floor(2*rand(1,N))-0.5)/0.5);
 x1 = zeros(1, 4*N);
@@ -37,9 +37,9 @@ plotConstellationDiagram(y,fs,'Constellation diagram at matched filter output')
 
 %task d
 x5 = zeros(1,fs*N);
-reg = zeros(1,81);
+reg = zeros(1,49);
 for n=1:fs*N
-    reg=[x3(n) reg(1:80)];
+    reg=[x3(n) reg(1:48)];
     x5(n)=reg*hm';
       if n>20
         if rem(n,4)==1;
@@ -53,14 +53,14 @@ for n=1:fs*N
 end
 figure
 subplot(2,1,1)
-plot(p2, 'k')
+plot(p2(20:end), 'k')
 grid on
 axis('square')
 hold on
-plot(p2,'r.')
+plot(p2(20:end),'r.')
 title('Output of detector')
 subplot(2,1,2)
-plot(0:length(p2)-1, angle(p2)/(2*pi))
+plot(0:length(p2)-1, -angle(p2)/(2*pi))
 title('Output of ATAN')
 
 %task e
@@ -73,13 +73,13 @@ k_p= (4*eta*theta_0)/(1+2*eta*theta_0+theta_0*theta_0);
 phs_accum=0;
 int=0;
 fltr_hld=0;
-reg=zeros(1,81);
+reg=zeros(1,49);
 m=1;
 p2_sv = zeros(1,999)
 d_phi_sv = zeros(1,999);
 for n=1:4000
     p1=x3(n)*exp(-j*2*pi*phs_accum);
-    reg=[p1 reg(1:80)];
+    reg=[p1 reg(1:48)];
     x5(n)=reg*hm';
       if n>20
         if rem(n,4)==1;
@@ -101,14 +101,14 @@ for n=1:4000
 end
 figure
 subplot(3,1,1)
-plotConstellationDiagram(x5(1001:end),fs,'Constellation diagram with PLL (last thousand samples)')
+plotConstellationDiagram(x5,fs,'Constellation diagram with PLL')
 subplot(3,1,2)
-plot(p2_sv, 'k')
+plot(p2_sv(20:end), 'k')
 grid on
 axis('square')
 hold on
-plot(p2_sv,'r.')
+plot(p2_sv(20:end),'r.')
 title('Output of detector')
 subplot(3,1,3)
-plot(0:length(p2_sv)-1, angle(p2_sv)/(2*pi))
+plot(0:length(d_phi_sv)-1, d_phi_sv)
 title('Output of ATAN')

@@ -1,7 +1,7 @@
 clear
 close all
 
-theta_0=2*pi/25;
+theta_0=1/25;
 eta = sqrt(2)/2;
 eta=1.0*eta;
 denom = (1+2*eta*theta_0+theta_0*theta_0)
@@ -33,11 +33,16 @@ for nn=1:400
     accum = accum+dphi;
 end
 
-subplot(4,1,1)
+figure
+subplot(2,1,1)
 plot(0:length(phi_sv)-1,phi_sv)
 title('Loop phase error')
+subplot(2,1,2)
+plot(dphi_sv);
+grid on;
+title('Output of Loop Filter, DDS Control Frequency')
 
-subplot(4,1,2)
+figure
 plot(0:length(phi_1)-1,phi_1)
 hold on
 plot(0:length(phi_2_sv)-1,phi_2_sv, 'r')
@@ -45,14 +50,15 @@ title('Input and output phase')
 legend('Input Phase','Output Phase')
 ylim([0 max(phi_1)])
 
-subplot(4,1,3)
+figure
+subplot(2,1,1)
 plot(0:length(s_1)-1,real(s_1))
 hold on
 plot(0:length(phi_2_sv)-1,cos(2*pi*phi_2_sv))
 title('Real Part of input/output signals')
 legend('Input', 'Output')
 
-subplot(4,1,4)
+subplot(2,1,2)
 plot(0:length(s_1)-1,imag(s_1))
 hold on
 plot(0:length(phi_2_sv)-1,sin(2*pi*phi_2_sv))
