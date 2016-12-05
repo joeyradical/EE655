@@ -62,10 +62,11 @@ for n = 1:30
     subplot(6,5,n)
     v=filter(hh_t2(n,:),1,x2);
     grid on
-    axis('square')
+    
     plot(v(2:2:end),'r.')
     ylim([-1.5 1.5])
     xlim([-1.5 1.5])
+    axis('square')
     title(['Filter no. ' num2str(n)])
 end
 

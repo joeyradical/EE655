@@ -7,7 +7,7 @@ function [hh,gg,g]= band_edge_harris(m_smpl,alpha,m_dly)
 % m_dly is delay in symbols to filter center
 % n_len=2*m_dly+1
 hh=rcosine(1,m_smpl,'sqrt',alpha,m_dly);
-hh=hh/(max(hh));
+hh=hh/(sum(hh));
 nn=length(hh);
 tt= (-m_dly*m_smpl:1:m_dly*m_smpl);
 g=sinc(2*alpha/m_smpl*tt-0.5) + sinc(2*alpha/m_smpl*tt+0.5);

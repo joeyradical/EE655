@@ -211,7 +211,7 @@ subplot(2,1,2)
 plot(linspace(-0.5,0.5,2048)*4,fftshift(20*log10(abs(fft(x4(1:2048).*ww)))),'r')
 hold on
 % Plot DDS signal
-plot(linspace(-0.5,0.5,2048)*4,fftshift(20*log10(abs(fft(exp(-j*2*pi*phs_f(1:2048).*ww))))),'b')
+plot(linspace(-0.5,0.5,2048)*4,fftshift(20*log10(abs(fft(exp(-j*2*pi*phs_f(1:2048)).*ww)))),'b')
 hold on
 % Plot frequency response of shaping filter
 plot(linspace(-0.5,0.5,1024)*4,fftshift(20*log10(abs(fft(h2/sum(h2),1024)))),'m')
@@ -240,7 +240,7 @@ hold on
 plot(x2(1:4:end),'r.')
 ylim([-1.5 1.5])
 xlim([-1.5 1.5])
-title('Constellation at input of spinner')
+title('Spinner input')
 subplot(1,3,2)
 grid on
 axis('square')
@@ -248,7 +248,7 @@ hold on
 plot(x3(1:4:end),'r.')
 ylim([-1.5 1.5])
 xlim([-1.5 1.5])
-title('Constellation at output of spinner')
+title('Spinner output')
 subplot(1,3,3)
 grid on
 axis('square')
@@ -258,7 +258,7 @@ hold on
 plot(x4(2001:4:end),'r.')
 ylim([-1.5 1.5])
 xlim([-1.5 1.5])
-title('Constellation at output of FLL')
+title('FLL output')
 
 
 
