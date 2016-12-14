@@ -1,0 +1,14 @@
+function [y] = n_QAM(N,n)
+% QAM_16(N)
+%   Generates N symbols of n-QAM
+%   N = number of symbols
+%   n = number of constellation points
+if n ==16
+    y=(floor(4*rand(1,N))-1.5)/1.5+j*(floor(4*rand(1,N))-1.5)/1.5;
+else
+    warning(['')
+    
+
+
+end
+
