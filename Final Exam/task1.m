@@ -39,6 +39,7 @@ subplot(2,1,1)
 plot(real(y),'bo')
 title('Spectral lines of demodulated signal')
 xlim([0 201])
+% Plot constellation diagram
 subplot(2,1,2)
 plot(y,'bo')
 axis('square')
@@ -57,7 +58,7 @@ figure
 plot(real(y1),'bo')
 title('Spectral lines of demodulated signal (channel present)')
 xlim([0 201])
-% Plot spectral lines
+% Plot constellation diagram
 figure
 plot(y1,'bo')
 axis('square')
@@ -100,11 +101,11 @@ chan=[1 0 0 0 0.2*j 0 0 0 0 0 0 0.1]; %channel
 % Pass signal through channel
 x3=filter(chan,1,x);
 % Demodulate data
-y3=OFDM_demod(x3,g,N+1,n_bins,p);
+[y3]=OFDM_demod(x3,g,N+1,n_bins,p);
 % Plot real part of time series
 figure
 plot(real(y3),'bo')
-title('Spectral lines of demodulated signal with preamble')
+title('Spectral lines of demodulated signal with equalization')
 xlim([0 201])
 % Plot spectral lines
 figure
@@ -112,10 +113,5 @@ plot(y3,'bo')
 axis('square')
 xlim([-1.5 1.5])
 ylim([-1.5 1.5])
-title('Constellation diagram of demodulated signal with preamble')
+title('Constellation diagram of demodulated signal with equalization')
 
-figure
-plot(y3(:,1),'bo')
-axis('square')
-xlim([-1.5 1.5])
-ylim([-1.5 1.5])
